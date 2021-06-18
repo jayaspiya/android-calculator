@@ -2,6 +2,7 @@ package com.example.gridapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 
@@ -23,6 +24,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnDot: Button
     private lateinit var btnPercent: Button
     private lateinit var btnProcess: Button
+    // Calculation Logic
+    private var firstNum: Double = 0.0
+    private var secondNum: Double = 0.0
+    private var processToDo: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,57 +50,95 @@ class MainActivity : AppCompatActivity() {
         btnPercent = findViewById(R.id.btnPercent)
         btnProcess = findViewById(R.id.btnProcess)
         btn1.setOnClickListener {
-            setResult("1")
+            setNumber(1)
+            setOutput()
         }
         btn2.setOnClickListener {
-            setResult("2")
+            setNumber(2)
+            setOutput()
         }
         btn3.setOnClickListener {
-            setResult("3")
+            setNumber(3)
+            setOutput()
         }
         btn4.setOnClickListener {
-            setResult("4")
+            setNumber(4)
+            setOutput()
         }
         btn5.setOnClickListener {
-            setResult("5")
+            setNumber(5)
+            setOutput()
         }
         btn6.setOnClickListener {
-            setResult("6")
+            setNumber(6)
+            setOutput()
         }
         btn7.setOnClickListener {
-            setResult("7")
+            setNumber(7)
+            setOutput()
         }
         btn8.setOnClickListener {
-            setResult("8")
+            setNumber(8)
+            setOutput()
         }
         btn9.setOnClickListener {
-            setResult("9")
+            setNumber(9)
+            setOutput()
         }
         btn0.setOnClickListener {
-            setResult("0")
+            setNumber(0)
+            setOutput()
         }
         btnAdd.setOnClickListener {
-            setResult("add")
+            processToDo = "+"
+
         }
         btnSub.setOnClickListener {
-            setResult("subtract")
+            processToDo = "-"
+
         }
         btnProduct.setOnClickListener {
-            setResult("product")
+            processToDo = "*"
         }
         btnDot.setOnClickListener {
             setResult("dot")
         }
         btnPercent.setOnClickListener {
-            setResult("percent")
-
+            processToDo = "%"
         }
         btnProcess.setOnClickListener {
-            setResult("Process")
+            when(processToDo){
+                "+" -> setResult("${firstNum + secondNum}")
+                "-" -> setResult("${firstNum - secondNum}")
+                "*" -> setResult("${firstNum * secondNum}")
+                "%" -> setResult("${firstNum * 100 / secondNum}")
+                ""-> setResult("No Input")
+            }
+            resetCalc()
         }
     }
-
+    private fun setOutput(){
+        if(processToDo == ""){
+            setResult("$firstNum")
+        }
+        else{
+            setResult("${secondNum}")
+        }
+    }
     private fun setResult(result: String) {
         tvResult.text = result
+    }
+    private fun setNumber(n: Int){
+        if(processToDo == ""){
+            firstNum = (firstNum*10)+n
+        }
+        else{
+            secondNum = (secondNum*10)+n
+        }
+    }
+    private fun resetCalc(){
+        firstNum = 0.0
+        secondNum = 0.0
+        processToDo = ""
     }
 }
