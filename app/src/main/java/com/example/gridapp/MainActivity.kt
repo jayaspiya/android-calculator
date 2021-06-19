@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
     private var firstNum: Double = 0.0
     private var secondNum: Double = 0.0
     private var processToDo: String = ""
-
+    private var answer: Double = 0.0
+    private var isReset: Boolean = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -91,38 +92,44 @@ class MainActivity : AppCompatActivity() {
         }
         btnAdd.setOnClickListener {
             processToDo = "+"
-
+            toggleProcessBtn()
         }
         btnSub.setOnClickListener {
             processToDo = "-"
+            toggleProcessBtn()
 
         }
         btnProduct.setOnClickListener {
             processToDo = "*"
+            toggleProcessBtn()
+
         }
         btnDot.setOnClickListener {
-            setResult("dot")
+            setResult("")
+            resetCalc()
         }
         btnPercent.setOnClickListener {
             processToDo = "%"
+            toggleProcessBtn()
+
         }
         btnProcess.setOnClickListener {
             when(processToDo){
-                "+" -> setResult("${firstNum + secondNum}")
-                "-" -> setResult("${firstNum - secondNum}")
-                "*" -> setResult("${firstNum * secondNum}")
-                "%" -> setResult("${firstNum * 100 / secondNum}")
-                ""-> setResult("No Input")
+                "+" -> answer = firstNum + secondNum
+                "-" -> answer = firstNum - secondNum
+                "*" -> answer = firstNum * secondNum
+                "%" -> answer = firstNum * 100 / secondNum
             }
+            setResult("$answer")
             resetCalc()
         }
     }
     private fun setOutput(){
         if(processToDo == ""){
-            setResult("$firstNum")
+            setResult(" ${String.format("%.0f", firstNum)}")
         }
         else{
-            setResult("${secondNum}")
+            setResult("${String.format("%.0f", secondNum)}")
         }
     }
     private fun setResult(result: String) {
@@ -140,5 +147,12 @@ class MainActivity : AppCompatActivity() {
         firstNum = 0.0
         secondNum = 0.0
         processToDo = ""
+        toggleProcessBtn(true)
+    }
+    private fun toggleProcessBtn(btnState: Boolean = false){
+        btnAdd.isEnabled = btnState
+        btnProduct.isEnabled = btnState
+        btnSub.isEnabled = btnState
+        btnPercent.isEnabled = btnState
     }
 }

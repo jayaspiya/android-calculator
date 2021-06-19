@@ -162,7 +162,7 @@
             android:layout_margin="5dp"
             android:textSize="30dp"
             android:backgroundTint="#4badce"
-            android:text="." />
+            android:text="C" />
 
         <Button
             android:id="@+id/btn0"
