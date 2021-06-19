@@ -53,63 +53,90 @@ class MainActivity : AppCompatActivity() {
         btn1.setOnClickListener {
             setNumber(1)
             setOutput()
+            isReset = true
         }
         btn2.setOnClickListener {
             setNumber(2)
             setOutput()
+            isReset = true
         }
         btn3.setOnClickListener {
             setNumber(3)
             setOutput()
+            isReset = true
         }
         btn4.setOnClickListener {
             setNumber(4)
             setOutput()
+            isReset = true
         }
         btn5.setOnClickListener {
             setNumber(5)
             setOutput()
+            isReset = true
         }
         btn6.setOnClickListener {
             setNumber(6)
             setOutput()
+            isReset = true
         }
         btn7.setOnClickListener {
             setNumber(7)
             setOutput()
+            isReset = true
         }
         btn8.setOnClickListener {
             setNumber(8)
             setOutput()
+            isReset = true
         }
         btn9.setOnClickListener {
             setNumber(9)
             setOutput()
+            isReset = true
         }
         btn0.setOnClickListener {
             setNumber(0)
             setOutput()
+            isReset = true
         }
         btnAdd.setOnClickListener {
             processToDo = "+"
+            if (!isReset){
+                firstNum = answer
+                isReset = true
+            }
             toggleProcessBtn()
         }
         btnSub.setOnClickListener {
             processToDo = "-"
+            if (!isReset){
+                firstNum = answer
+                isReset = true
+            }
             toggleProcessBtn()
 
         }
         btnProduct.setOnClickListener {
             processToDo = "*"
+            if (!isReset){
+                firstNum = answer
+                isReset = true
+            }
             toggleProcessBtn()
 
         }
         btnDot.setOnClickListener {
             setResult("")
             resetCalc()
+            isReset = true
         }
         btnPercent.setOnClickListener {
             processToDo = "%"
+            if (!isReset){
+                firstNum = answer
+                isReset = true
+            }
             toggleProcessBtn()
 
         }
@@ -121,6 +148,7 @@ class MainActivity : AppCompatActivity() {
                 "%" -> answer = firstNum * 100 / secondNum
             }
             setResult("$answer")
+            isReset = false
             resetCalc()
         }
     }
