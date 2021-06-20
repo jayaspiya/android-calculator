@@ -2,7 +2,6 @@ package com.example.gridapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 
@@ -21,9 +20,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnAdd: Button
     private lateinit var btnSub: Button
     private lateinit var btnProduct: Button
-    private lateinit var btnDot: Button
+    private lateinit var btnClear: Button
     private lateinit var btnPercent: Button
     private lateinit var btnProcess: Button
+    private lateinit var btnDecimal: Button
     // Calculation Logic
     private var firstNum: Double = 0.0
     private var secondNum: Double = 0.0
@@ -47,9 +47,10 @@ class MainActivity : AppCompatActivity() {
         btnAdd = findViewById(R.id.btnAdd)
         btnSub = findViewById(R.id.btnSub)
         btnProduct = findViewById(R.id.btnProduct)
-        btnDot = findViewById(R.id.btnDot)
+        btnClear = findViewById(R.id.btnClear)
         btnPercent = findViewById(R.id.btnPercent)
         btnProcess = findViewById(R.id.btnProcess)
+        btnDecimal = findViewById(R.id.btnDecimal)
         btn1.setOnClickListener {
             setNumber(1)
             setOutput()
@@ -126,7 +127,7 @@ class MainActivity : AppCompatActivity() {
             toggleProcessBtn()
 
         }
-        btnDot.setOnClickListener {
+        btnClear.setOnClickListener {
             setResult("")
             resetCalc()
             isReset = true
